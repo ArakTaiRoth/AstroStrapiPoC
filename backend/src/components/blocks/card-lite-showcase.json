@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_card_lite_showcases",
+  "info": {
+    "displayName": "Card lite showcase",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.card-lite"
+    }
+  }
+}

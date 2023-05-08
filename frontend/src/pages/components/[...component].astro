@@ -1,0 +1,56 @@
+---
+import { fetchStrapiData, getStrapiURL } from '~/utils';
+import qs from 'qs';
+import Layout from '~/layouts/PageLayout.astro';
+import marked from 'marked';
+
+export async function getStaticPaths({ paginate }) {
+  const componentsUrl = getStrapiURL(
+    `/components/?${qs.stringify(
+      {
+        populate: ['slug'],
+      },
+      {
+        encodeValuesOnly: true, // prettify URL
+      }
+    )}`
+  );
+
+  const components = await fetchStrapiData(componentsUrl);
+  return components.map((component) => {
+    return {
+      params: { component: component.attributes?.slug || '' },
+      props: { component },
+    };
+  });
+}
+
+const { component } = Astro.props;
+//mock pageData for now
+const pageData = {
+  attributes: {
+    header: {
+      data: {
+        id: 1,
+      },
+    },
+    footer: {
+      data: {
+        id: 1,
+      },
+    },
+  },
+};
+---
+<style>
+  .content {
+    font: var(--goa-typography-heading-l);
+    text-align: center;
+  }
+</style>
+<Layout pageData={pageData}>
+  <div class="content">
+    <h1>{component.attributes?.title}</h1>
+    <div set:html={marked.parse(component.attributes?.details || '')}></div>
+  </div>
+</Layout>

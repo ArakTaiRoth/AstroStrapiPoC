@@ -1,0 +1,126 @@
+---
+import Layout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/blocks/Header.astro';
+import Footer from '~/components/blocks/Footer.astro';
+import Nav from '~/components/blocks/Nav.astro';
+import { fetchStrapiData, getStrapiURL } from '~/utils';
+import qs from 'qs';
+
+const { pageData } = Astro.props;
+const headerUrl = getStrapiURL(
+  `/headers/${pageData.attributes.header.data.id}?${qs.stringify(
+    {
+      populate: ['links', 'microsite_header'],
+    },
+    {
+      encodeValuesOnly: true, // prettify URL
+    }
+  )}`
+);
+const footerUrl = getStrapiURL(
+  `/footers/${pageData.attributes.footer.data.id}?${qs.stringify(
+    {
+      populate: ['sections', 'sections.links'],
+    },
+    {
+      encodeValuesOnly: true, // prettify URL
+    }
+  )}`
+);
+
+const navUrl = getStrapiURL(
+  `/navs/${pageData.attributes.nav?.data?.id}?${qs.stringify(
+    {
+      populate: {
+        sections:{
+          populate: ['links']
+        }
+      },
+    },
+    {
+      encodeValuesOnly: true, // prettify URL
+    }
+  )}`
+);
+const headerData = await fetchStrapiData(headerUrl);
+const footerData = await fetchStrapiData(footerUrl);
+const navData = pageData.attributes.nav?.data && await fetchStrapiData(navUrl);
+---
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .content {
+    flex: 1 1 auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  main {
+    flex: 1 1 auto;
+  }
+
+  .nav {
+    padding: 0 1rem;
+    transition: transform 200ms ease-in-out;
+    background-color: var(--goa-color-greyscale-white);
+    border-right: 3px solid gray;
+  }
+
+  .nav > * {
+    display: block;
+    padding: 0.5rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .page {
+      gap: 2rem;
+    }
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: min(var(--max-content-width), 100vw);
+    }
+
+    .nav {
+      padding: 0 2rem;
+    }
+  }
+</style>
+
+<Layout {pageData}>
+  <div class="page">
+    <slot name="header">
+      <Header {...headerData.attributes} />
+    </slot>
+    <section class="content">
+      {navData && 
+        <nav class="nav">
+          <slot name="nav">
+            <Nav {...navData.attributes}></Nav>
+          </slot>
+        </nav>
+      } 
+      { !navData && 
+        <slot name="nav">
+        </slot>
+      }
+      <main>
+        <slot />
+      </main>
+    </section>
+    <slot name="footer">
+      <Footer {...footerData.attributes} />
+    </slot>
+  </div>
+</Layout>

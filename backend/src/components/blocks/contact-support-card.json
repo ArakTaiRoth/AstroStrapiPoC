@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_contact_support_cards",
+  "info": {
+    "displayName": "Contact support card"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "text",
+      "default": "Need help? Contact with us on Slack"
+    },
+    "description": {
+      "type": "richtext",
+      "default": "<a href=\"#\">#design-system-support</a>General information and discussions related to the design system"
+    }
+  }
+}

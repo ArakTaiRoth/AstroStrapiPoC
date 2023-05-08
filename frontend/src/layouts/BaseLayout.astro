@@ -1,0 +1,31 @@
+---
+import '~/assets/styles/base.css';
+
+import MetaTags from '~/components/common/MetaTags.astro';
+import BasicScripts from '~/components/common/BasicScripts.astro';
+import { SITE } from '~/config.mjs';
+
+const { meta = {} } = Astro.props;
+const { language = 'en' } = SITE;
+---
+
+<!DOCTYPE html>
+<html lang={language} dir={'ltr'} class="2xl:text-[20px]">
+  <head>
+    <MetaTags {...meta} />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src='@abgov/web-components/web-components.es.js'></script>
+  </head>
+
+  <body>
+    <slot />
+    <BasicScripts />
+  </body>
+</html>

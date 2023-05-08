@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_footer_nav_sections",
+  "info": {
+    "displayName": "footer-section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "nav",
+        "meta"
+      ],
+      "default": "nav"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    }
+  }
+}

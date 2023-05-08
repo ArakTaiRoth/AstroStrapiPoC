@@ -1,0 +1,73 @@
+---
+import { SITE } from '~/config.mjs';
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchStrapiData, getStrapiURL } from '~/utils';
+import qs from 'qs';
+import BlockManager from '~/components/blocks/BlockManager.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const query = qs.stringify(
+  {
+    populate:{
+      header: {
+       fields: ['id']
+      },
+      footer: {
+       fields: ['id']
+      },
+      nav: {
+       fields: ['id']
+      },
+      blocks:{
+        populate: {
+          buttons: {
+            populate: {
+              link: {
+                fields: ['*']
+              }
+            },
+          },
+          cards: {
+            populate: {
+              link: {
+                fields: ['*']
+              },
+              badges: {
+                fields: ['*']
+              }
+            },
+          },
+          links: {
+            populate: {
+              link: {
+                fields: ['*']
+              }
+            },
+          },
+        }
+      }
+    }
+  },
+  {
+    encodeValuesOnly: true, // prettify URL
+  }
+);
+  const pagesUrl = getStrapiURL(
+  `/pages/?${query}`
+);
+  const data = await fetchStrapiData(pagesUrl);
+  return data?.map((page) => {
+    return {
+      params: { page: page.attributes?.slug || 'home' },
+      props: { page },
+    };
+  });
+}
+
+
+const {page: resp} = Astro.props;
+---
+
+<Layout pageData={resp}>
+  <BlockManager blocks={resp?.attributes.blocks} />
+</Layout>

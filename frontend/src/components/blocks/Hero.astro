@@ -1,0 +1,35 @@
+---
+import { GoAHeroBanner, GoAHeroBannerActions, GoAButtonGroup, GoAButton } from '@abgov/react-components';
+
+interface CallToAction {
+  text: string;
+  href: string;
+  icon?: string;
+}
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  callToAction?: string | CallToAction;
+  callToAction2?: string | CallToAction;
+  image?: string | any; // TODO: find HTMLElementProps
+}
+
+const {
+  heading,
+  description,
+} = Astro.props;
+---
+
+<GoAHeroBanner
+  heading={heading}
+  mb={"md"}
+>
+  {description && <div>{description}</div>}
+  <GoAHeroBannerActions>
+    <GoAButtonGroup>
+      <GoAButton onClick={() => {}}>Action</GoAButton>
+      <GoAButton onClick={() => {}} type="secondary">Other Action</GoAButton>
+    </GoAButtonGroup>
+  </GoAHeroBannerActions>
+</GoAHeroBanner>

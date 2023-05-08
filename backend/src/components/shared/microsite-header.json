@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_ui_microsite_headers",
+  "info": {
+    "displayName": "microsite header",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "version": {
+      "type": "string"
+    },
+    "feedbackUrl": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "alpha",
+        "beta",
+        "live"
+      ],
+      "default": "live"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "metadata.goa-generic-collection"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+---
+import { GoABadge, GoATable } from "@abgov/react-components";
+import qs from "qs";
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchStrapiData, getStrapiURL } from "~/utils";
+
+const componentsUrl = getStrapiURL(`/components/?${qs.stringify(
+    {
+      populate: '*',
+    },
+    {
+      encodeValuesOnly: true, // prettify URL
+    }
+  )}`
+);
+
+const components = await fetchStrapiData(componentsUrl);
+//mock pageData for now
+const pageData = {
+    attributes: {
+      header: {
+        data: {
+          id: 1,
+        }
+        
+      },
+      footer: {
+        data: {
+          id: 1,
+        }
+      }
+    }
+  }
+
+const getComponentBadgeType = (status) => {
+  switch (status) {
+    case 'Coming Soon':
+      return "information";
+    case 'Available':
+      return "success";
+    case 'Alpha':
+      return "important";
+  }
+}
+---
+
+<style>
+  .nav {
+    padding: 0 1rem;
+    transition: transform 200ms ease-in-out;
+    background-color: var(--goa-color-greyscale-white);
+    border-right: 3px solid gray;
+  }
+
+  .nav > * {
+    display: block;
+    padding: 0.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+
+<Layout pageData={pageData}>
+  <div slot="nav">
+    <nav class="nav">
+      {components.map((component) => (
+        <a href={`components/${component.attributes.slug}`}>{component.attributes.title}</a>
+      ))}
+    </nav>
+  </div>
+  <table class="table-fixed">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {components.map((component) => (
+        <tr>
+          <td>
+            <a href={`components/${component.attributes.slug}`}>{component.attributes.title}</a>
+          </td>
+          <td>
+            {component.attributes.description}
+          </td>
+          <td>
+            <GoABadge content={component.attributes?.status} type={getComponentBadgeType(component.attributes?.status)}></GoABadge>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+
+  </table>
+</Layout>

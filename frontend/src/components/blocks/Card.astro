@@ -1,0 +1,41 @@
+---
+import { GoABadge, GoABlock, GoAContainer } from '@abgov/react-components';
+
+const { badges, description, link } = Astro.props;
+---
+
+<style>
+  .headingLink {
+    font: var(--goa-typography-heading-m);
+    color: var(--goa-color-interactive-default);
+    letter-spacing: var(--goa-letter-spacing-button);
+    text-decoration: underline;
+  }
+  .description {
+    font: var(--goa-typography-body-m);
+  }
+
+  .link {
+    font: var(--goa-typography-body-m);
+    color: var(--goa-color-interactive-default);
+    letter-spacing: var(--goa-letter-spacing-button);
+    text-decoration: underline;
+  }
+</style>
+<div>
+  <div class="image-container">
+    <img src="https://placehold.it/1200x400" alt="placeholder image" />
+  </div>
+  <GoAContainer accent="thin" padding="compact">
+    <div class="headingLink"><a href={link.url}>{link.display}</a></div>
+    <div class="description">{description}</div>
+    <GoABlock>
+      {
+        badges.map((badge) => {
+          return <GoABadge type={badge.color} content={badge.text} />;
+        })
+      }
+    </GoABlock>
+    
+  </GoAContainer>
+</div>

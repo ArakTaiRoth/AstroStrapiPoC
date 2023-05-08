@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "header",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "microsite_header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.microsite-header"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "metadata.goa-generic-collection"
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    }
+  }
+}

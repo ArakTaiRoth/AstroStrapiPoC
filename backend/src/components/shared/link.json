@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_ui_links",
+  "info": {
+    "displayName": "link",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "display": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": false
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

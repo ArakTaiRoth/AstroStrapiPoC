@@ -1,0 +1,35 @@
+---
+import { GoAAppHeader, GoABlock } from '@abgov/react-components';
+
+interface Link {
+  display: string;
+  url: string;
+  isExternal?: boolean;
+}
+
+interface ActionLink extends Link {
+  type?: string;
+}
+
+interface MenuLink extends Link {
+  links?: Array<Link>;
+}
+
+export interface Props {
+  links?: Array<MenuLink>;
+  actions?: Array<ActionLink>;
+  isSticky?: boolean;
+  showToggleTheme?: boolean;
+  showRssFeed?: boolean;
+  position?: string;
+}
+
+const { heading, links } = Astro.props;
+---
+
+<GoAAppHeader heading={heading}>
+  <GoABlock gap={"m"}>
+    {links?.map(({ display, url }) => <a href={url}>{display}</a>)}
+  </GoABlock>
+  
+</GoAAppHeader>

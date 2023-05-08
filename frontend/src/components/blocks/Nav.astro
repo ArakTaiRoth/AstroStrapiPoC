@@ -1,0 +1,25 @@
+---
+const { sections } = Astro.props;
+---
+
+<style>
+  li {
+    padding-left: 3rem;
+  }
+</style>
+{
+  sections.map((section) => (
+    <div>
+      <div>
+        <h2>{section.title}</h2>
+        <ul>
+          {section.links.map((link) => (
+            <li>
+              <a href={link.url}>{link.display}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  ))
+}

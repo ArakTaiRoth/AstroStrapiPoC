@@ -1,0 +1,34 @@
+---
+import Hero from '~/components/blocks/Hero.astro';
+import CardLiteShowcase from './CardLiteShowcase.astro';
+import CardShowcase from './CardShowcase.astro';
+import ContactSupportCard from './ContactSupportCard.astro';
+import Markdown from './Markdown.astro';
+const { blocks = [] } = Astro.props;
+---
+
+<div>
+  {
+    blocks.map(({ __component, ...rest }, index) => {
+      let Block: any;
+      switch (__component) {
+        case 'blocks.hero':
+          Block = Hero;
+          break;
+        case 'blocks.card-lite-showcase':
+          Block = CardLiteShowcase;
+          break;
+        case 'blocks.card-showcase':
+          Block = CardShowcase;
+          break;
+        case 'blocks.contact-support-card':
+          Block = ContactSupportCard;
+          break;
+        case 'blocks.markdown':
+          Block = Markdown;
+          break;
+      }
+      return Block ? <Block key={index} {...rest} /> : null;
+    })
+  }
+</div>

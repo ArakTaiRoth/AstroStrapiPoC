@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_nav_sections",
+  "info": {
+    "displayName": "nav section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    }
+  }
+}

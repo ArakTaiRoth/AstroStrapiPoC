@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_cards",
+  "info": {
+    "displayName": "card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "badges": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.badge"
+    }
+  }
+}

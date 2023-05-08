@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_metadata_goa_generic_collections",
+  "info": {
+    "displayName": "goa-generic-collection"
+  },
+  "options": {},
+  "attributes": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

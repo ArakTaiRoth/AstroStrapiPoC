@@ -1,0 +1,30 @@
+---
+import { GoABlock, GoAButton } from '@abgov/react-components';
+
+const {
+  heading,
+  description,
+  link,
+} = Astro.props;
+---
+<style>
+  .heading {
+    font: var(--goa-typography-heading-l);
+  }
+  .description {
+    font: var(--goa-typography-body-m);
+  }
+
+  .link{
+    font: var(--goa-typography-body-m);
+    color: var(--goa-color-interactive-default);
+    letter-spacing: var(--goa-letter-spacing-button);
+    text-decoration: underline;
+  }
+
+</style>
+<GoABlock gap="xs" direction="column">
+  <div class="heading">{heading}</div>
+  <div class="description">{description}</div>
+  <a class="link" href={link?.url}>{link?.display}</a>
+</GoABlock>

@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "header": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::header.header"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "metadata.goa-generic-collection"
+    },
+    "footer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::footer.footer"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.hero",
+        "blocks.card-lite-showcase",
+        "blocks.card-showcase",
+        "blocks.contact-support-card",
+        "blocks.markdown"
+      ]
+    },
+    "slug": {
+      "type": "string"
+    },
+    "navigation": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "nav": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::nav.nav",
+      "inversedBy": "pages"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "navs",
+  "info": {
+    "singularName": "nav",
+    "pluralName": "navs",
+    "displayName": "nav",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-section"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page",
+      "mappedBy": "nav"
+    }
+  }
+}

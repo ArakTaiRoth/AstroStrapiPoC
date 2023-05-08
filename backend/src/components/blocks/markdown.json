@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_markdowns",
+  "info": {
+    "displayName": "markdown"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+---
+import { GoACallout, GoAPageBlock } from '@abgov/react-components';
+import { marked } from 'marked';
+
+interface CallToAction {
+  text: string;
+  href: string;
+  icon?: string;
+}
+
+export interface Props {
+  title?: string;
+  description?: string;
+  callToAction?: string | CallToAction;
+}
+
+const {
+  content
+} = Astro.props;
+---
+<style>
+</style>
+<GoAPageBlock>
+    <div class="content" set:html={marked.parse(content)}></div>
+</GoAPageBlock>
+
+

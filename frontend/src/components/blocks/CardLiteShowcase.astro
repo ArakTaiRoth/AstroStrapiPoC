@@ -1,0 +1,17 @@
+---
+import { GoAGrid, GoAPageBlock, GoADivider } from '@abgov/react-components';
+import CardLite from './CardLite.astro';
+
+const {
+  cards,
+} = Astro.props;
+---
+
+<GoAPageBlock>
+  <GoAGrid minChildWidth="20ch" mt="l">
+    {cards?.map((card) => 
+      <CardLite {...card}></CardLite>
+    )}
+  </GoAGrid>
+  <GoADivider mt="3xl" mb="3xl"></GoADivider> 
+</GoAPageBlock>

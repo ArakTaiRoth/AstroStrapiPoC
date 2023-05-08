@@ -1,0 +1,35 @@
+---
+import { GoACallout, GoAPageBlock } from '@abgov/react-components';
+import { marked } from 'marked';
+
+interface CallToAction {
+  text: string;
+  href: string;
+  icon?: string;
+}
+
+export interface Props {
+  title?: string;
+  description?: string;
+  callToAction?: string | CallToAction;
+}
+
+const {
+  heading,
+  description
+} = Astro.props;
+---
+<style>
+  .description p a {
+    color: var(--goa-color-interactive-default) !important;
+    letter-spacing: var(--goa-letter-spacing-button);
+    text-decoration: underline;
+  }
+</style>
+<GoAPageBlock>
+  <GoACallout type="information" heading={heading}>
+    <div class="description" set:html={marked.parse(description)}></div>
+  </GoACallout>
+</GoAPageBlock>
+
+

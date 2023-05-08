@@ -1,0 +1,40 @@
+---
+import { GoAAppFooter, GoAAppFooterNavSection, GoAAppFooterMetaSection } from '@abgov/react-components';
+
+interface Link {
+  display?: string;
+  url?: string;
+  isExternal?: boolean;
+}
+
+interface Section {
+  type?: string;
+  heading?: string;
+  links?: Link[]
+}
+
+export interface Props {
+  sections?: Section[]
+}
+
+const { sections } = Astro.props;
+const navSections = sections?.filter((section) => section.type === 'nav');
+const metaSections = sections?.filter((section) => section.type === 'meta');
+---
+
+<GoAAppFooter>
+  {navSections?.map((section) => 
+    <GoAAppFooterNavSection heading={section.heading} maxColumnCount={(section.links?.length || 1) / 3}>
+      {section.links?.map((link) => 
+        <a href={link.url}>{link.display}</a>
+      )}
+    </GoAAppFooterNavSection>
+  )}
+  {metaSections?.map((section) => 
+    <GoAAppFooterMetaSection>
+      {section.links?.map((link) => 
+        <a href={link.url}>{link.display}</a>
+      )}
+    </GoAAppFooterMetaSection>
+  )}
+</GoAAppFooter>

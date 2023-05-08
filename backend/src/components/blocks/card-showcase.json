@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_card_showcases",
+  "info": {
+    "displayName": "Card showcase"
+  },
+  "options": {},
+  "attributes": {
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.card"
+    }
+  }
+}
